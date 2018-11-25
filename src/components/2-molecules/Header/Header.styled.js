@@ -5,8 +5,8 @@ export const Link = styled(NavLink)`
   color: ${props => props.theme.colors.brand};
   display: inline-block;
   font-size: calc(${props => props.theme.fonts.baseSize} - 3px);
-  letter-spacing: 4px;
   max-width: 100px;
+  height: ${props => props.theme.header.height}px;
   padding: 0 20px;
   position: relative;
   text-decoration: none;
@@ -18,12 +18,14 @@ export const Link = styled(NavLink)`
 `;
 
 const HeaderStyled = styled.header`
+  background: ${props => props.theme.colors.bodyBg};
+  height: ${props => props.theme.header.height}px;
   left: 0;
   padding: 20px;
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 100;
+  z-index: ${props => props.theme.zIndex.fixed};
 `;
 
 export default HeaderStyled;

@@ -7,6 +7,7 @@ export const Content = styled.section`
       ${props => props.theme.transition.easeOut},
     transform ${props => props.theme.transition.duration}
       ${props => props.theme.transition.easeOut};
+  width: 100%;
 
   .fade-enter-done & {
     opacity: 1;
@@ -19,7 +20,8 @@ const RoutesTransition = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 100vh;
+  min-height: calc(100vh - ${props => props.theme.header.height * 4}px);
+  padding-top: ${props => props.theme.header.height * 4}px;
 `;
 
 export default RoutesTransition;

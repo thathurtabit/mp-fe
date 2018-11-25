@@ -10,7 +10,6 @@ import Routes from '../Routes/Routes';
 import Header from '../../2-molecules/Header/Header';
 import AppStyled from './App.styled';
 import ScrollToTop from '../../../utils/helpers/ScrollToTop';
-import Loading from '../../1-atoms/Loading/Loading';
 
 WebFont.load({
   google: {
@@ -55,7 +54,6 @@ const App = () => (
           <AppStyled>
             <Header />
             <Route path="/" component={GATracker(Routes)} />
-            <Loading loading />
           </AppStyled>
         </ScrollToTop>
         <GlobalStyle />

@@ -7,7 +7,7 @@ import { ErrorTitle } from '../../../utils/constants/constants';
 const Error = ({ error }) => (
   <ErrorStyled>
     {/* eslint-disable jsx-a11y/accessible-emoji */}
-    <Emoji role="img" aria-label="Server problem">
+    <Emoji role="img" aria-label={error}>
       ☄️
     </Emoji>
     {/* eslint-enable jsx-a11y/accessible-emoji */}

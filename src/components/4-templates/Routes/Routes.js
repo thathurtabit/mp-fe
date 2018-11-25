@@ -9,8 +9,7 @@ import Loading from '../../1-atoms/Loading/Loading';
 
 // Use React.lazy for lazyload / code splitting
 const Home = lazy(() => import('../../5-pages/Home/Home'));
-const Features = lazy(() => import('../../5-pages/Features/Features'));
-const FourOhFour = lazy(() => import('../../5-pages/FourOhFour/FourOhFour'));
+const Error = lazy(() => import('../../2-molecules/Error/Error'));
 
 const mapStateToProps = state => ({
   loading: state.loading,
@@ -34,8 +33,9 @@ const Routes = ({ ...props }) => {
             <Suspense fallback={<Loading />}>
               <Switch location={location}>
                 <Route exact path="/" component={() => <Home />} />
-                <Route path="/features" component={() => <Features />} />
-                <Route component={FourOhFour} />
+                <Route
+                  component={() => <Error error="404: Page not found" />}
+                />
               </Switch>
             </Suspense>
           </Content>

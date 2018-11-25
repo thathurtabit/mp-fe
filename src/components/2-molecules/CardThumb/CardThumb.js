@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CardThumbStyled from './CardThumb.styled';
 
-const CardThumb = ({ card }) => <CardThumbStyled>{card.Title}</CardThumbStyled>;
+const CardThumb = ({ product }) => (
+  <CardThumbStyled>{product.Title}</CardThumbStyled>
+);
 
 export default CardThumb;
 
 CardThumb.propTypes = {
-  card: PropTypes.oneOfType([
+  product: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.objectOf(

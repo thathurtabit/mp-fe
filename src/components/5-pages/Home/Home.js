@@ -1,8 +1,5 @@
 import React, { Component, Fragment, Suspense, lazy } from 'react';
 import 'whatwg-fetch';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { onLoad } from '../../../state/actions/onLoad';
 import Loading from '../../1-atoms/Loading/Loading';
 
 // Lazy load components
@@ -10,60 +7,52 @@ const Error = lazy(() => import('../../2-molecules/Error/Error'));
 const NoItems = lazy(() => import('../../2-molecules/NoItems/NoItems'));
 const CardList = lazy(() => import('../../3-organisms/CardList/CardList'));
 
-const mapStateToProps = state => ({
-  loading: state.loading,
-});
-
-const mapDispatchToProps = dispatch => ({
-  onLoad: bool => dispatch(onLoad(bool)),
-});
-
 class Home extends Component {
   constructor(props) {
     super(props);
     this.apiURL =
-      // 'https://search.moonpig.com/api/products?size=12&searchFacets=occasion_level_3:occasion%3Ewell%20done%3Enew%20job';
+      // 'https://search.moonpig.com/api/products?size=12&searchFacets=occasion_level_3:occasion%3Ewell%20done%3Enew%20job'; - CORB error
       this.apiURL = 'https://localhost:3000/api/response.json';
 
     // Init state
     this.state = {
       error: false,
-      products: [{}],
+      products: [],
     };
     this.mounted = false;
   }
 
   componentDidMount() {
     this.mounted = true;
-    const { loading, onLoad } = this.props;
     this.handleFetchData = this.handleFetchData.bind(this);
     this.handleFetchError = this.handleFetchError.bind(this);
 
-    fetch(this.apiURL)
-      .then(response => response.json())
-      .then(data => this.handleFetchData(data, loading, onLoad))
-      .catch(error => this.handleFetchError(error, loading, onLoad));
+    const { products } = this.state;
+
+    if (!products.length) {
+      fetch(this.apiURL)
+        .then(response => response.json())
+        .then(data => this.handleFetchData(data))
+        .catch(error => this.handleFetchError(error));
+    }
   }
 
   componentWillUnmount() {
     this.mounted = false;
   }
 
-  handleFetchData(data, loading, onLoad) {
-    if (loading) onLoad(false);
+  handleFetchData(data) {
+    const { products } = this.state;
 
-    console.log(data.Products.filter(product => product.Title));
-
-    if (this.mounted) {
+    if (this.mounted && !products.length) {
       this.setState({
         products: data.Products.filter(product => product.Title),
       });
     }
   }
 
-  handleFetchError(error, loading, onLoad) {
+  handleFetchError(error) {
     this.setState({ error: true });
-    if (loading) onLoad(false);
     console.warn(error);
   }
 
@@ -85,11 +74,4 @@ class Home extends Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home);
-
-Home.propTypes = {
-  loading: PropTypes.bool.isRequired,
-};
+export default Home;
