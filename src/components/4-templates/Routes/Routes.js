@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Fragment, Suspense, lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -20,28 +20,30 @@ const Routes = ({ ...props }) => {
   const locationPath = location.pathname;
 
   return (
-    <TransitionGroup>
-      <CSSTransition
-        key={locationPath}
-        in={!loading}
-        classNames="fade"
-        appear
-        timeout={loadDelay}
-      >
-        <RoutesTransition className="fade">
-          <Content>
-            <Suspense fallback={<Loading />}>
-              <Switch location={location}>
-                <Route exact path="/" component={() => <Home />} />
-                <Route
-                  component={() => <Error error="404: Page not found" />}
-                />
-              </Switch>
-            </Suspense>
-          </Content>
-        </RoutesTransition>
-      </CSSTransition>
-    </TransitionGroup>
+    <Fragment>
+      <TransitionGroup>
+        <CSSTransition
+          key={locationPath}
+          in={!loading}
+          classNames="fade"
+          appear
+          timeout={loadDelay}
+        >
+          <RoutesTransition className="fade">
+            <Content>
+              <Suspense fallback={<Loading />}>
+                <Switch location={location}>
+                  <Route exact path="/" component={() => <Home />} />
+                  <Route
+                    component={() => <Error error="404: Page not found" />}
+                  />
+                </Switch>
+              </Suspense>
+            </Content>
+          </RoutesTransition>
+        </CSSTransition>
+      </TransitionGroup>
+    </Fragment>
   );
 };
 

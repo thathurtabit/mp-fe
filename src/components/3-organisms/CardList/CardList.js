@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import uuidv1 from 'uuid/v1';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -14,7 +14,10 @@ export default class CardList extends Component {
   }
 
   componentDidMount() {
-    this.delay = setTimeout(() => this.setState({ show: true }), loadDelay);
+    this.delay = setTimeout(
+      () => this.setState({ show: true, modalActive: true }),
+      loadDelay
+    );
   }
 
   componentWillUnmount() {
@@ -25,20 +28,22 @@ export default class CardList extends Component {
     const { products } = this.props;
     const { show } = this.state;
     return (
-      <TransitionGroup>
-        <CSSTransition
-          in={show}
-          classNames="cards-in"
-          appear
-          timeout={loadDelay}
-        >
-          <CardListStyled className="cards-in">
-            {products.map(product => (
-              <CardThumb key={uuidv1()} product={product} />
-            ))}
-          </CardListStyled>
-        </CSSTransition>
-      </TransitionGroup>
+      <Fragment>
+        <TransitionGroup>
+          <CSSTransition
+            in={show}
+            classNames="cards-in"
+            appear
+            timeout={loadDelay}
+          >
+            <CardListStyled className="cards-in">
+              {products.map(product => (
+                <CardThumb key={uuidv1()} product={product} />
+              ))}
+            </CardListStyled>
+          </CSSTransition>
+        </TransitionGroup>
+      </Fragment>
     );
   }
 }

@@ -70,7 +70,9 @@ class Home extends Component {
           {error ? (
             <Error error="It's not you, it's us." />
           ) : products !== null && products.length ? (
-            <CardList products={products} />
+            <Fragment>
+              <CardList products={products} />
+            </Fragment>
           ) : (
             <NoItems text="No items to view." />
           )}

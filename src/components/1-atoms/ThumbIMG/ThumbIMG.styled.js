@@ -14,6 +14,7 @@ const IMG = styled.img`
       ${props => props.theme.transition.easeOut};
   width: 100%;
 
+  a:focus &,
   &:hover {
     box-shadow: 10px 10px 0 ${props => props.theme.colors.brand};
   }

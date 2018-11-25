@@ -1,7 +1,8 @@
 import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
-import CardThumbStyled, { Link } from './CardThumb.styled';
+import CardThumbStyled, { CardLink } from './CardThumb.styled';
 import LoadingSmall from '../../1-atoms/LoadingSmall/LoadingSmall';
+import CardModal from '../../3-organisms/CardModal/CardModal';
 
 const CardThumb = ({ product }) => {
   const {
@@ -16,9 +17,13 @@ const CardThumb = ({ product }) => {
   return (
     <CardThumbStyled>
       <Suspense key={id} fallback={<LoadingSmall />}>
-        <Link href={productId} title={`View ${title || 'item'}`}>
+        <CardLink
+          parentPath="/"
+          path={`/card/${productId}`}
+          component={CardModal}
+        >
           <LazyThumb url={imgURL} title={title} />
-        </Link>
+        </CardLink>
       </Suspense>
     </CardThumbStyled>
   );

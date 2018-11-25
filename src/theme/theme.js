@@ -24,6 +24,9 @@ const theme = {
       duration: '0.2s',
     },
   },
+  modal: {
+    bg: 'rgba(0,0,0,0.75)',
+  },
   transition: {
     duration: '0.6s',
     easeOut: 'cubic-bezier(0.165, 0.84, 0.44, 1)',
