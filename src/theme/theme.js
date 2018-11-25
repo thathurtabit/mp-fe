@@ -16,6 +16,14 @@ const theme = {
   header: {
     height: 25, // add 'px' at component level
   },
+  cardList: {
+    maxWidth: '1300px',
+  },
+  thumb: {
+    transition: {
+      duration: '0.2s',
+    },
+  },
   transition: {
     duration: '0.6s',
     easeOut: 'cubic-bezier(0.165, 0.84, 0.44, 1)',

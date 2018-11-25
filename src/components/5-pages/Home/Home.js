@@ -45,8 +45,14 @@ class Home extends Component {
     const { products } = this.state;
 
     if (this.mounted && !products.length) {
+      // Filter out duplicates and setState
       this.setState({
-        products: data.Products.filter(product => product.Title),
+        products: Object.values(
+          data.Products.reduce(
+            (acc, cur) => Object.assign(acc, { [cur.ProductId]: cur }),
+            {}
+          )
+        ),
       });
     }
   }

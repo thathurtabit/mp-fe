@@ -1,8 +1,15 @@
 import styled from 'styled-components';
 
-const CardThumbStyled = styled.li`
-  background: ${props => props.theme.colors.brand};
+export const Link = styled.a`
   position: relative;
+`;
+
+const CardThumbStyled = styled.li`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
 `;
 
 export default CardThumbStyled;

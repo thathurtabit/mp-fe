@@ -5,17 +5,21 @@ import {
   shallowWithTheme,
   mountWithTheme,
 } from '../../../utils/test_config/testHelpers';
-import { ErrorTitle } from '../../../utils/constants/constants';
+import { NoItemsTitle } from '../../../utils/constants/constants';
 
-import Error from './Error';
+import NoItems from './NoItems';
 
-describe('Error', () => {
+describe('NoItems', () => {
   it('should render correctly', () => {
-    const element = shallowWithTheme(<Error title={ErrorTitle} error="404" />);
+    const element = shallowWithTheme(
+      <NoItems title={NoItemsTitle} NoItems="404" text="This is some text" />
+    );
     expect(shallowToJson(element)).toMatchSnapshot();
   });
   it('should render text correctly', () => {
-    const element = mountWithTheme(<Error title={ErrorTitle} error="404" />);
-    expect(element.find('h1').text()).toBe(ErrorTitle);
+    const element = mountWithTheme(
+      <NoItems title={NoItemsTitle} NoItems="404" text="This is some text" />
+    );
+    expect(element.find('h1').text()).toBe(NoItemsTitle);
   });
 });
