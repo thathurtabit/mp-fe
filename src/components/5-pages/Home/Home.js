@@ -12,7 +12,7 @@ class Home extends Component {
     super(props);
     this.apiURL =
       // 'https://search.moonpig.com/api/products?size=12&searchFacets=occasion_level_3:occasion%3Ewell%20done%3Enew%20job'; - CORB error
-      this.apiURL = 'https://localhost:3000/api/response.json';
+      this.apiURL = process.env.NODE_ENV === 'production' ? 'https://moonpig-fe-fun.surge.sh/api/response.json' : 'https://localhost:3000/api/response.json';
 
     // Init state
     this.state = {

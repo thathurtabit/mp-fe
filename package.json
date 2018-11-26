@@ -29,7 +29,8 @@
     "test-coverage": "react-scripts test --env=jsdom -o --coverage --watch",
     "eject": "react-scripts eject",
     "e2e": "cypress open",
-    "analyze": "source-map-explorer build/static/js/main.*"
+    "analyze": "source-map-explorer build/static/js/main.*",
+    "surge": "react-scripts build && cd ./build && surge --domain https://moonpig-fe-fun.surge.sh"
   },
   "eslintConfig": {
     "extends": "react-app"
