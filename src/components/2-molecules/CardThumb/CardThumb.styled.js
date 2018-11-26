@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { ModalLink } from 'react-router-modal';
+import { Link } from "react-router-dom";
 
-export const CardLink = styled(ModalLink)`
+export const CardLink = styled(Link)`
   position: relative;
 `;
 

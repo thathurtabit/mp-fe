@@ -2,7 +2,6 @@ import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import CardThumbStyled, { CardLink } from './CardThumb.styled';
 import LoadingSmall from '../../1-atoms/LoadingSmall/LoadingSmall';
-import CardModal from '../../3-organisms/CardModal/CardModal';
 
 const CardThumb = ({ product }) => {
   const {
@@ -18,9 +17,13 @@ const CardThumb = ({ product }) => {
     <CardThumbStyled>
       <Suspense key={id} fallback={<LoadingSmall />}>
         <CardLink
-          parentPath="/"
-          path={`/card/${productId}`}
-          component={CardModal}
+          key={productId}
+          to={{
+            pathname: `/card/${productId}`,
+            state: { modal: true }
+          }}
+          tabIndex="0"
+          title={title}
         >
           <LazyThumb url={imgURL} title={title} />
         </CardLink>

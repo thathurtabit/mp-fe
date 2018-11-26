@@ -5,10 +5,11 @@ import CardModalStyled, { CardModalBG } from './CardModal.styled';
 export default class CardModal extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { productId: props.location.pathname};
   }
 
   render() {
+    const {productId} = this.state;
     return (
       <CardModalBG>
         <CardModalStyled
@@ -16,11 +17,13 @@ export default class CardModal extends Component {
           aria-labelledby="modal-title"
           aria-modal="true"
         >
-          <h3>I am a modal</h3>
+          <h3>Product: {productId}</h3>
         </CardModalStyled>
       </CardModalBG>
     );
   }
 }
 
-CardModal.propTypes = {};
+CardModal.propTypes = {
+  location: PropTypes.string.isRequired,
+};
