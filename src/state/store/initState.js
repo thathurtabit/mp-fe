@@ -1,5 +1,6 @@
 const initState = {
-  loading: true
+  loading: true,
+  response: [],
 };
 
 export default initState;

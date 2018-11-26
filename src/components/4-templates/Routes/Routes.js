@@ -27,7 +27,7 @@ class Routes extends Component {
 
     // set previousLocation if props.location is not modal
     if (
-      prevProps.history.action !== "POP" &&
+      prevProps.history.action !== 'POP' &&
       (!location.state || !location.state.modal)
     ) {
       this.previousLocation = location;
@@ -42,7 +42,7 @@ class Routes extends Component {
       location.state.modal &&
       this.previousLocation !== location
     ); // not initial render
-  
+
     return (
       <Fragment>
         <TransitionGroup>
@@ -58,7 +58,10 @@ class Routes extends Component {
                 <Suspense fallback={<Loading />}>
                   <Switch location={isModal ? this.previousLocation : location}>
                     <Route exact path="/" component={() => <Home />} />
-                    <Route path="/card/:id" component={() => <CardModal location={location} />} />
+                    <Route
+                      path="/card/:id"
+                      component={() => <CardModal location={location} />}
+                    />
                     <Route
                       component={() => <Error error="404: Page not found" />}
                     />
@@ -69,16 +72,23 @@ class Routes extends Component {
           </CSSTransition>
         </TransitionGroup>
         <Suspense fallback={<Loading />}>
-          {isModal && <Route path="/card/:id" component={() => <CardModal location={location} />} />}
+          {isModal && (
+            <Route
+              path="/card/:id"
+              component={() => <CardModal location={location} />}
+            />
+          )}
         </Suspense>
       </Fragment>
     );
   }
-};
+}
 
 export default connect(mapStateToProps)(Routes);
 
 Routes.propTypes = {
   loading: PropTypes.bool.isRequired,
-  location: PropTypes.objectOf(PropTypes.string).isRequired,
+  location: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.object, PropTypes.string])
+  ).isRequired,
 };
