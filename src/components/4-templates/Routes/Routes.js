@@ -2,9 +2,7 @@ import React, { Component, Fragment, Suspense, lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import RoutesTransition, { Content } from './Routes.styled';
-import { loadDelay } from '../../../utils/constants/constants';
+import RoutesWrapper, { Content } from './Routes.styled';
 import Loading from '../../1-atoms/Loading/Loading';
 
 // Use React.lazy for lazyload / code splitting
@@ -35,8 +33,7 @@ class Routes extends Component {
   }
 
   render() {
-    const { location, loading } = this.props;
-    const locationPath = location.pathname;
+    const { location } = this.props;
     const isModal = !!(
       location.state &&
       location.state.modal &&
@@ -45,40 +42,30 @@ class Routes extends Component {
 
     return (
       <Fragment>
-        <TransitionGroup>
-          <CSSTransition
-            key={locationPath}
-            in={!loading}
-            classNames="fade"
-            appear
-            timeout={loadDelay}
-          >
-            <RoutesTransition className="fade">
-              <Content>
-                <Suspense fallback={<Loading />}>
-                  <Switch location={isModal ? this.previousLocation : location}>
-                    <Route exact path="/" component={() => <Home />} />
-                    <Route
-                      path="/card/:id"
-                      component={() => <CardModal location={location} />}
-                    />
-                    <Route
-                      component={() => <Error error="404: Page not found" />}
-                    />
-                  </Switch>
-                </Suspense>
-              </Content>
-            </RoutesTransition>
-          </CSSTransition>
-        </TransitionGroup>
-        <Suspense fallback={<Loading />}>
-          {isModal && (
-            <Route
-              path="/card/:id"
-              component={() => <CardModal location={location} />}
-            />
-          )}
-        </Suspense>
+        <RoutesWrapper>
+          <Content>
+            <Suspense fallback={<Loading />}>
+              <Switch location={isModal ? this.previousLocation : location}>
+                <Route exact path="/" component={() => <Home />} />
+                <Route
+                  path="/card/:id"
+                  component={() => <CardModal location={location} />}
+                />
+                <Route
+                  component={() => <Error error="404: Page not found" />}
+                />
+              </Switch>
+            </Suspense>
+          </Content>
+          <Suspense fallback={<Loading />}>
+            {isModal && (
+              <Route
+                path="/card/:id"
+                component={() => <CardModal location={location} />}
+              />
+            )}
+          </Suspense>
+        </RoutesWrapper>
       </Fragment>
     );
   }

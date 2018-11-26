@@ -1,21 +1,10 @@
 import styled from 'styled-components';
 
 export const Content = styled.section`
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity ${props => props.theme.transition.duration}
-      ${props => props.theme.transition.easeOut},
-    transform ${props => props.theme.transition.duration}
-      ${props => props.theme.transition.easeOut};
   width: 100%;
-
-  .fade-enter-done & {
-    opacity: 1;
-    transform: translateY(0);
-  }
 `;
 
-const RoutesTransition = styled.section`
+const RoutesWrapper = styled.section`
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -24,4 +13,4 @@ const RoutesTransition = styled.section`
   padding-top: ${props => props.theme.header.height * 4}px;
 `;
 
-export default RoutesTransition;
+export default RoutesWrapper;
