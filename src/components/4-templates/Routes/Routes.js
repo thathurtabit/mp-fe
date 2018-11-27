@@ -9,6 +9,7 @@ import Loading from '../../1-atoms/Loading/Loading';
 const Home = lazy(() => import('../../5-pages/Home/Home'));
 const Error = lazy(() => import('../../2-molecules/Error/Error'));
 const CardModal = lazy(() => import('../../3-organisms/CardModal/CardModal'));
+const CardSingle = lazy(() => import('../../5-pages/CardSingle/CardSingle'));
 
 const mapStateToProps = state => ({
   loading: state.loading,
@@ -49,7 +50,7 @@ class Routes extends Component {
                 <Route exact path="/" component={() => <Home />} />
                 <Route
                   path="/card/:id"
-                  component={() => <CardModal location={location} />}
+                  component={() => <CardSingle location={location.pathname} />}
                 />
                 <Route
                   component={() => <Error error="404: Page not found" />}

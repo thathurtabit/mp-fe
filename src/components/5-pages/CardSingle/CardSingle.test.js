@@ -3,14 +3,12 @@ import { shallowToJson } from 'enzyme-to-json';
 import 'jest-styled-components';
 import { shallowWithTheme } from '../../../utils/test_config/testHelpers';
 
-import {CardModal} from './CardModal';
+import {CardSingle} from './CardSingle';
 
-describe('CardModal', () => {
+describe('CardSingle', () => {
   it('should render correctly', () => {
     const element = shallowWithTheme(
-      <CardModal
-        location='myLocation'
-      />
+      <CardSingle />
     );
     expect(shallowToJson(element)).toMatchSnapshot();
   });

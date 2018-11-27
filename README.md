@@ -20,7 +20,7 @@ In the project directory, you can run:
 *NOTE* You'll need to make sure you're running localhost as https before running `yarn start`:
 
 + Win: `set https=true`
-+ Mac: `export https=true`
++ Mac: `export HTTPS=true`
 
 Runs the app in the development mode.<br>
 Open [https://localhost:3000](https://localhost:3000) to view it in the browser.

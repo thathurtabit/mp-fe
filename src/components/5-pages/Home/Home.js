@@ -12,6 +12,7 @@ const CardList = lazy(() => import('../../3-organisms/CardList/CardList'));
 
 const mapStateToProps = state => ({
   products: state.response,
+  api: state.api,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -21,13 +22,7 @@ const mapDispatchToProps = dispatch => ({
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.apiURL =
-      // 'https://search.moonpig.com/api/products?size=12&searchFacets=occasion_level_3:occasion%3Ewell%20done%3Enew%20job'; - CORB error
-      this.apiURL =
-        process.env.NODE_ENV === 'production'
-          ? 'https://moonpig-fe-fun.surge.sh/api/response.json'
-          : 'https://localhost:3000/api/response.json';
-
+  
     this.mounted = false;
 
     // Init state
@@ -41,10 +36,10 @@ class Home extends Component {
     this.handleFetchData = this.handleFetchData.bind(this);
     this.handleFetchError = this.handleFetchError.bind(this);
 
-    const { products } = this.props;
+    const { api, products } = this.props;
 
-    if (!products.length) {
-      fetch(this.apiURL)
+    if (!products.length && this.mounted) {
+      fetch(api)
         .then(response => response.json())
         .then(data => this.handleFetchData(data))
         .catch(error => this.handleFetchError(error));
@@ -103,6 +98,7 @@ export default connect(
 )(Home);
 
 Home.propTypes = {
+  api: PropTypes.string.isRequired,
   storeResponse: PropTypes.func.isRequired,
   products: PropTypes.arrayOf(
     PropTypes.objectOf(
