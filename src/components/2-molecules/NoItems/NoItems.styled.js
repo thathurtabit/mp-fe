@@ -33,6 +33,11 @@ export const Content = styled.section`
 `;
 
 const NoItemsStyled = styled.section`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - ${props => props.theme.header.height * 6}px);
+  justify-content: center;
   position: relative;
 `;
 

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Loading from '../../1-atoms/Loading/Loading';
 import { storeResponse } from '../../../state/actions/storeResponse';
+import { NoTitle, NoDesc } from '../../../utils/constants/constants';
 
 // Lazy load components
 const Error = lazy(() => import('../../2-molecules/Error/Error'));
@@ -22,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
 class Home extends Component {
   constructor(props) {
     super(props);
-  
+
     this.mounted = false;
 
     // Init state
@@ -61,8 +62,17 @@ class Home extends Component {
           {}
         )
       );
+      // Keep only what we need
+      const responseSelection = response.map(res => ({
+        title: res.Title || NoTitle,
+        desc: res.ShortDescription || NoDesc,
+        imgSrc: res.ProductImage.Link.Href,
+        id: res.ProductId,
+        productNo: res.MoonpigProductNo,
+        link: '#',
+      }));
       // set to Redux state
-      storeResponse(response);
+      storeResponse(responseSelection);
     }
   }
 
@@ -102,11 +112,7 @@ Home.propTypes = {
   storeResponse: PropTypes.func.isRequired,
   products: PropTypes.arrayOf(
     PropTypes.objectOf(
-      PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-        PropTypes.object,
-      ])
+      PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     )
   ).isRequired,
 };

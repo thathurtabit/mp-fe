@@ -1,12 +1,19 @@
 const theme = {
   colors: {
-    bodyBg: '#fff',
+    bodyBg: '#fafafa',
     copy: '#505050',
     brand: '#f79cc0',
     title: '#ee447d',
+    header: '#fff',
   },
   fonts: {
     baseSize: '16px',
+  },
+  button: {
+    bg: '#f79cc0',
+    text: '#fff',
+    hover: '#ffa2c1',
+    active: '#ffa2c1',
   },
   links: {
     link: '#505050',

@@ -1,23 +1,32 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import CardStyled, {CardContent} from './Card.styled';
-import {loadDelay} from '../../../utils/constants/constants';
+import CardStyled, {
+  CardContent,
+  ShortDescription,
+  CardLeft,
+  CardRight,
+} from './Card.styled';
+import { loadDelay, NoDesc, NoTitle } from '../../../utils/constants/constants';
 import PageTitle from '../../1-atoms/PageTitle/PageTitle';
 import CardImage from '../../1-atoms/CardImage/CardImage';
+import Button from '../../1-atoms/Button/Button';
+import { BuyText } from '../../../utils/constants/constants';
 
-const Card = ({product}) => (
+const Card = ({ product }) => (
   <Fragment>
     <TransitionGroup>
-      <CSSTransition
-            classNames="card"
-            appear
-            timeout={loadDelay}
-          >
+      <CSSTransition classNames="card" appear timeout={loadDelay}>
         <CardStyled className="card">
           <CardContent>
-            <PageTitle title={product.Title} />
-            <CardImage url={product.ProductImage.Link.Href} alt={product.Title}/>
+            <CardRight>
+              <PageTitle title={product.title || NoTitle} />
+              <ShortDescription>{product.desc || NoDesc}</ShortDescription>
+              <Button title={BuyText} url={product.link} external />
+            </CardRight>
+            <CardLeft>
+              <CardImage url={product.imgSrc} alt={product.title} />
+            </CardLeft>
           </CardContent>
         </CardStyled>
       </CSSTransition>
@@ -29,4 +38,4 @@ export default Card;
 
 Card.propTypes = {
   product: PropTypes.objectOf(PropTypes.string).isRequired,
-}
+};

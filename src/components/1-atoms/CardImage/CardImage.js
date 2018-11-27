@@ -46,9 +46,10 @@ export default class CardImage extends Component {
 CardImage.propTypes = {
   thumb: PropTypes.bool,
   url: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 };
 
 CardImage.defaultProps = {
   thumb: false,
-}
+  title: 'Card',
+};

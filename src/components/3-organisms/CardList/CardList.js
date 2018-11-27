@@ -49,13 +49,5 @@ export default class CardList extends Component {
 }
 
 CardList.propTypes = {
-  products: PropTypes.arrayOf(
-    PropTypes.objectOf(
-      PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-        PropTypes.object,
-      ])
-    )
-  ).isRequired,
+  products: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

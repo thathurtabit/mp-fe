@@ -16,36 +16,30 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const CardThumb = ({ product, modalOpen, toggleModal }) => {
-  const {
-    Title: title,
-    ProductImage: image,
-    ProductId: id,
-    MoonpigProductNo: productId,
-  } = product;
-  const { Href: imgURL } = image.Link;
+  const { title, imgSrc, id, productNo } = product;
   const body = document.querySelector('body');
 
   // Breaking out of React
   if (modalOpen) {
     body.setAttribute('style', 'overflow-y: hidden;');
   } else {
-    body.setAttribute('style', 'overflow-y: auto;');
+    body.setAttribute('style', 'overflow-y: scroll;');
   }
 
   return (
     <CardThumbStyled>
       <Suspense key={id} fallback={<LoadingSmall />}>
         <CardLink
-          key={productId}
+          key={id}
           to={{
-            pathname: `/card/${productId}`,
+            pathname: `/card/${productNo}`,
             state: { modal: true },
           }}
           tabIndex="0"
           title={title}
           onClick={() => toggleModal(true)}
         >
-          <LazyThumb url={imgURL} title={title} thumb />
+          <LazyThumb url={imgSrc} title={title} thumb />
         </CardLink>
       </Suspense>
     </CardThumbStyled>
@@ -58,15 +52,13 @@ export default connect(
 )(CardThumb);
 
 CardThumb.propTypes = {
-  modalOpen: PropTypes.bool.isRequired,
+  modalOpen: PropTypes.bool,
   toggleModal: PropTypes.func.isRequired,
-  product: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.objectOf(
-      PropTypes.objectOf(
-        PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-      )
-    ),
-  ]).isRequired,
+  product: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  ).isRequired,
+};
+
+CardThumb.defaultProps = {
+  modalOpen: false,
 };

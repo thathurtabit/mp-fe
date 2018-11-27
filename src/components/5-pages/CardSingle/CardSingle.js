@@ -1,8 +1,9 @@
 import React, { Component, Suspense, lazy } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CardSingleStyled from './CardSingle.styled';
 import Loading from '../../1-atoms/Loading/Loading';
+import { NoTitle, NoDesc } from '../../../utils/constants/constants';
 
 const Error = lazy(() => import('../../2-molecules/Error/Error'));
 const NoItems = lazy(() => import('../../2-molecules/NoItems/NoItems'));
@@ -16,7 +17,7 @@ const mapStateToProps = state => ({
 export class CardSingle extends Component {
   constructor(props) {
     super(props);
-    this.state = {loading: true, error: false};
+    this.state = { loading: true, error: false };
   }
 
   componentDidMount() {
@@ -47,8 +48,20 @@ export class CardSingle extends Component {
 
     if (this.mounted && !products.length) {
       // Filter out single Card
-      const product = data.Products.filter(prod => prod.MoonpigProductNo === productId)[0];
-      this.setState({product, loading: false});
+      const productSingle =
+        data.Products.filter(prod => prod.MoonpigProductNo === productId)[0] ||
+        null;
+      // Keep what we need
+      const product = {
+        title: productSingle.Title || NoTitle,
+        desc: productSingle.ShortDescription || NoDesc,
+        imgSrc: productSingle.ProductImage.Link.Href,
+        id: productSingle.ProductId,
+        productNo: productSingle.MoonpigProductNo,
+        link: '#',
+      };
+
+      this.setState({ product, loading: false });
     }
   }
 
@@ -58,28 +71,26 @@ export class CardSingle extends Component {
   }
 
   render() {
-    const {loading, product, error} = this.state;
+    const { loading, product, error } = this.state;
 
     return (
       <CardSingleStyled>
-          {loading && <Loading loading />}
-          <Suspense fallback={<Loading loading={loading} />}>
+        {loading && <Loading loading />}
+        <Suspense fallback={<Loading loading={loading} />}>
           {error ? (
-              <Error error="It's not you, it's us." />
-            ) : product !== null ? (
-              <Card product={product} />
-            ) : (
-              <NoItems text="No item to view." />
-            )}
-          </Suspense>
+            <Error error="It's not you, it's us." />
+          ) : product !== null ? (
+            <Card product={product} />
+          ) : (
+            <NoItems text="No items found." />
+          )}
+        </Suspense>
       </CardSingleStyled>
     );
   }
 }
 
-export default connect(
-  mapStateToProps
-)(CardSingle);
+export default connect(mapStateToProps)(CardSingle);
 
 CardSingle.propTypes = {
   location: PropTypes.string.isRequired,
@@ -92,9 +103,9 @@ CardSingle.propTypes = {
         PropTypes.object,
       ])
     )
-  )
+  ),
 };
 
 CardSingle.defaultProps = {
-  products: []
-}
+  products: [],
+};

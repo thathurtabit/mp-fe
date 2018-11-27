@@ -16,12 +16,14 @@ export const ModalTransition = styled.section``;
 
 const CardModalStyled = styled.section`
   background: ${props => props.theme.colors.bodyBg};
-  box-shadow: 20px 20px 0 ${props => props.theme.colors.brand};
+  box-shadow: 5px 5px 0 ${props => props.theme.colors.brand};
+  display: flex;
   height: 90vh;
   left: 50%;
-  max-height: 600px;
+  max-height: 520px;
   max-width: 800px;
   opacity: 0;
+  overflow-y: auto;
   position: fixed;
   top: 50%;
   transform: translate(-50%, -45%);
@@ -35,6 +37,14 @@ const CardModalStyled = styled.section`
   &.modal-in-enter-done {
     opacity: 1;
     transform: translate(-50%, -50%);
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.md}) {
+    box-shadow: 10px 10px 0 ${props => props.theme.colors.brand};
+  }
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.lg}) {
+    box-shadow: 20px 20px 0 ${props => props.theme.colors.brand};
   }
 `;
 

@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
     color: #505050;
     margin: 0;
     min-height: 100vh;
+    overflow-y: scroll;
     padding: 0;
     font-family: "Poppins", sans-serif;
     -webkit-font-smoothing: antialiased;

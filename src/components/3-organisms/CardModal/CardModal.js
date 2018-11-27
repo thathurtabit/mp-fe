@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import CardModalStyled, { CardModalBG } from './CardModal.styled';
-import {CardContent} from '../Card/Card.styled';
-import { loadDelay } from '../../../utils/constants/constants';
+import {
+  CardContent,
+  ShortDescription,
+  CardLeft,
+  CardRight,
+} from '../Card/Card.styled';
+import {
+  loadDelay,
+  NoDesc,
+  NoTitle,
+  BuyText,
+} from '../../../utils/constants/constants';
 import CloseModal from '../../1-atoms/CloseModal/CloseModal';
 import LoadingSmall from '../../1-atoms/LoadingSmall/LoadingSmall';
 import PageTitle from '../../1-atoms/PageTitle/PageTitle';
 import CardImage from '../../1-atoms/CardImage/CardImage';
+import Button from '../../1-atoms/Button/Button';
 
 const mapStateToProps = state => ({
   products: state.response,
@@ -30,7 +40,7 @@ export class CardModal extends Component {
       .filter(loc => loc)
       .pop();
     const productData = products.filter(
-      product => product.MoonpigProductNo === productId
+      product => product.productNo === productId
     )[0];
 
     this.setState({ product: productData, loading: false });
@@ -55,8 +65,16 @@ export class CardModal extends Component {
                 <LoadingSmall loading />
               ) : (
                 <CardContent>
-                  <PageTitle id="modal-title" title={product.Title}/>
-                  <CardImage url={product.ProductImage.Link.Href} alt={product.Title} />
+                  <CardRight>
+                    <PageTitle title={product.title || NoTitle} />
+                    <ShortDescription>
+                      {product.desc || NoDesc}
+                    </ShortDescription>
+                    <Button title={BuyText} url={product.link} external />
+                  </CardRight>
+                  <CardLeft>
+                    <CardImage url={product.imgSrc} alt={product.title} />
+                  </CardLeft>
                 </CardContent>
               )}
             </CardModalStyled>
@@ -69,6 +87,6 @@ export class CardModal extends Component {
 
 export default connect(mapStateToProps)(CardModal);
 
-CardModal.propTypes = {
-  location: PropTypes.string.isRequired,
+CardModal.defaultProps = {
+  location: null,
 };

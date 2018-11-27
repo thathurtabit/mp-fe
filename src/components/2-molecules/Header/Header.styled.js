@@ -18,7 +18,7 @@ export const Link = styled(NavLink)`
 `;
 
 const HeaderStyled = styled.header`
-  background: ${props => props.theme.colors.bodyBg};
+  background: ${props => props.theme.colors.header};
   height: ${props => props.theme.header.height}px;
   left: 0;
   padding: 20px;
