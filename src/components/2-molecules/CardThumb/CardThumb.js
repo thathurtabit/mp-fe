@@ -5,7 +5,7 @@ import CardThumbStyled, { CardLink } from './CardThumb.styled';
 import LoadingSmall from '../../1-atoms/LoadingSmall/LoadingSmall';
 import { toggleModal } from '../../../state/actions/toggleModal';
 
-const LazyThumb = lazy(() => import('../../1-atoms/ThumbIMG/ThumbIMG'));
+const LazyThumb = lazy(() => import('../../1-atoms/CardImage/CardImage'));
 
 const mapStateToProps = state => ({
   modalOpen: state.modalOpen,
@@ -45,7 +45,7 @@ const CardThumb = ({ product, modalOpen, toggleModal }) => {
           title={title}
           onClick={() => toggleModal(true)}
         >
-          <LazyThumb url={imgURL} title={title} />
+          <LazyThumb url={imgURL} title={title} thumb />
         </CardLink>
       </Suspense>
     </CardThumbStyled>

@@ -1,11 +1,14 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import CardModalStyled, { CardModalBG } from './CardModal.styled';
+import {CardContent} from '../Card/Card.styled';
 import { loadDelay } from '../../../utils/constants/constants';
 import CloseModal from '../../1-atoms/CloseModal/CloseModal';
 import LoadingSmall from '../../1-atoms/LoadingSmall/LoadingSmall';
+import PageTitle from '../../1-atoms/PageTitle/PageTitle';
+import CardImage from '../../1-atoms/CardImage/CardImage';
 
 const mapStateToProps = state => ({
   products: state.response,
@@ -51,13 +54,10 @@ export class CardModal extends Component {
               {loading ? (
                 <LoadingSmall loading />
               ) : (
-                <Fragment>
-                  <h1>{product.Title || 'Card'}</h1>
-                  <img
-                    src={product.ProductImage.Link.Href}
-                    alt={product.Title}
-                  />
-                </Fragment>
+                <CardContent>
+                  <PageTitle id="modal-title" title={product.Title}/>
+                  <CardImage url={product.ProductImage.Link.Href} alt={product.Title} />
+                </CardContent>
               )}
             </CardModalStyled>
           </CSSTransition>

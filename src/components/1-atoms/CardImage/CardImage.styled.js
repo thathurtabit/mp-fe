@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const IMG = styled.img`
   border: 1px solid ${props => props.theme.links.hover};
-  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.05);
-  max-width: 250px;
+  box-shadow: ${props => props.thumb ? '5px 5px 0 rgba(0, 0, 0, 0.05)' : 'none' };
+  max-width: ${props => props.thumb ? '250px' : '100%' };
   opacity: 0;
   transform: translateY(20px);
   transition: box-shadow ${props => props.theme.thumb.transition.duration}
@@ -16,7 +16,7 @@ const IMG = styled.img`
 
   a:focus &,
   &:hover {
-    box-shadow: 10px 10px 0 ${props => props.theme.colors.brand};
+    box-shadow: ${props => props.thumb ? `10px 10px 0 ${props.theme.colors.brand}` : 'none' };
   }
 
   &.thumb-enter-done {

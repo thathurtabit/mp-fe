@@ -1,8 +1,10 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import CardStyled from './Card.styled';
+import CardStyled, {CardContent} from './Card.styled';
 import {loadDelay} from '../../../utils/constants/constants';
+import PageTitle from '../../1-atoms/PageTitle/PageTitle';
+import CardImage from '../../1-atoms/CardImage/CardImage';
 
 const Card = ({product}) => (
   <Fragment>
@@ -13,11 +15,10 @@ const Card = ({product}) => (
             timeout={loadDelay}
           >
         <CardStyled className="card">
-          {product.Title || 'Card'}
-          <img
-            src={product.ProductImage.Link.Href}
-            alt={product.Title}
-          />
+          <CardContent>
+            <PageTitle title={product.Title} />
+            <CardImage url={product.ProductImage.Link.Href} alt={product.Title}/>
+          </CardContent>
         </CardStyled>
       </CSSTransition>
     </TransitionGroup>

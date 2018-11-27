@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const CardContent = styled.article`
+  display: flex;
+`;
+
 const CardStyled = styled.article`
   position: relative;
 

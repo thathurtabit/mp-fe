@@ -7,5 +7,9 @@ const PageTitle = ({title}) => <Title>{title}</Title>;
 export default PageTitle;
 
 PageTitle.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string
+}
+
+PageTitle.defaultProps = {
+  title: "Card"
 }

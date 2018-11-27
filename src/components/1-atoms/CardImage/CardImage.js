@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import IMG from './ThumbIMG.styled';
+import IMG from './CardImage.styled';
 import LoadingSmall from '../LoadingSmall/LoadingSmall';
 import { loadDelay } from '../../../utils/constants/constants';
 
-export default class ThumbIMG extends Component {
+export default class CardImage extends Component {
   constructor(props) {
     super(props);
     this.state = { loading: true };
@@ -22,7 +22,7 @@ export default class ThumbIMG extends Component {
 
   render() {
     const { loading } = this.state;
-    const { title, url } = this.props;
+    const { title, url, thumb } = this.props;
     return (
       <Fragment>
         {loading && <LoadingSmall />}
@@ -34,7 +34,7 @@ export default class ThumbIMG extends Component {
               appear
               timeout={loadDelay}
             >
-              <IMG className="thumb" src={url} alt={title} />
+              <IMG className="thumb" src={url} alt={title} thumb={thumb} />
             </CSSTransition>
           </TransitionGroup>
         )}
@@ -43,7 +43,12 @@ export default class ThumbIMG extends Component {
   }
 }
 
-ThumbIMG.propTypes = {
+CardImage.propTypes = {
+  thumb: PropTypes.bool,
   url: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
+
+CardImage.defaultProps = {
+  thumb: false,
+}
