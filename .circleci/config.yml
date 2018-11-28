@@ -32,8 +32,6 @@ jobs:
       - run: aws --version
       - run: aws s3 ls
       - run: yarn run deploy
-      - run: aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DIST_ID_1 --paths "/*"
-      - run: aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DIST_ID_2 --paths "/*"
 
 workflows:
   build:
