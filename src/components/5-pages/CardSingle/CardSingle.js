@@ -66,7 +66,7 @@ export class CardSingle extends Component {
   }
 
   handleFetchError(error) {
-    this.setState({ error: true });
+    this.setState({ error: true, loading: false });
     console.warn(error);
   }
 
@@ -79,7 +79,7 @@ export class CardSingle extends Component {
         <Suspense fallback={<Loading loading={loading} />}>
           {error ? (
             <Error error="It's not you, it's us." />
-          ) : product !== null ? (
+          ) : !loading && product !== null ? (
             <Card product={product} />
           ) : (
             <NoItems text="No items found." />
