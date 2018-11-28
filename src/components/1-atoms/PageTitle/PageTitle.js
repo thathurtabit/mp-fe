@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Title from './PageTitle.styled';
+import {NoTitle} from '../../../utils/constants/constants';
 
 const PageTitle = ({ title }) => <Title>{title}</Title>;
 
@@ -11,5 +12,5 @@ PageTitle.propTypes = {
 };
 
 PageTitle.defaultProps = {
-  title: 'Card',
+  title: NoTitle,
 };

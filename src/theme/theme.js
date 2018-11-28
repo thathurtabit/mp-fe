@@ -38,6 +38,7 @@ const theme = {
     duration: '0.6s',
     easeOut: 'cubic-bezier(0.165, 0.84, 0.44, 1)',
     easeInOut: 'cubic-bezier(1, 0, 0, 1)',
+    easeOutBack: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
   },
   breakpoints: {
     sm: '480px',

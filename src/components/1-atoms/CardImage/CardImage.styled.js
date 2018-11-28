@@ -10,11 +10,11 @@ const IMG = styled.img`
   max-width: 100%;
   max-height: 100%:
   opacity: 0;
-  transform: translateY(20px);
+  transform: scale(0.9);
   transition: box-shadow ${props => props.theme.thumb.transition.duration}
       ${props => props.theme.transition.easeOut},
     transform ${props => props.theme.thumb.transition.duration}
-      ${props => props.theme.transition.easeOut},
+      ${props => props.theme.transition.easeOutBack},
     opacity ${props => props.theme.thumb.transition.duration}
       ${props => props.theme.transition.easeOut};
   width: 200px;
@@ -31,7 +31,7 @@ const IMG = styled.img`
 
   &.thumb-enter-done {
     opacity: 1;
-    transform: translateY(0);
+    transform:  scale(1);
   }
 `;
 

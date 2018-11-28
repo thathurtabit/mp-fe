@@ -10,18 +10,11 @@ const CardListStyled = styled.ul`
   margin: 20px auto 100px;
   max-width: ${props => props.theme.cardList.maxWidth};
   padding: 0 40px;
-
-  opacity: 0;
   transform: translateY(20px);
   transition: opacity ${props => props.theme.transition.duration}
       ${props => props.theme.transition.easeOut},
     transform ${props => props.theme.transition.duration}
       ${props => props.theme.transition.easeOut};
-
-  &.cards-in-enter-done {
-    opacity: 1;
-    transform: translateY(0);
-  }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.sm}) {
     grid-template-columns: repeat(2, 1fr);

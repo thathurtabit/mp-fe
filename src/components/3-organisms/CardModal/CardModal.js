@@ -70,7 +70,7 @@ export class CardModal extends Component {
                     <ShortDescription>
                       {product.desc || NoDesc}
                     </ShortDescription>
-                    <Button title={BuyText} url={product.link} external />
+                    <Button tabIndex='0' title={BuyText} url={product.link} external />
                   </CardRight>
                   <CardLeft>
                     <CardImage url={product.imgSrc} alt={product.title} />

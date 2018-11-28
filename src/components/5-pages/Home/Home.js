@@ -69,7 +69,7 @@ class Home extends Component {
         imgSrc: res.ProductImage.Link.Href,
         id: res.ProductId,
         productNo: res.MoonpigProductNo,
-        link: '#',
+        link: '/',
       }));
       // set to Redux state
       storeResponse(responseSelection);

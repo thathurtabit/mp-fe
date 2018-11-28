@@ -7,6 +7,7 @@ import {
 } from '../../../utils/test_config/testHelpers';
 
 import PageTitle from './PageTitle';
+import {NoTitle} from '../../../utils/constants/constants';
 
 const Title = 'Test Title';
 
@@ -19,5 +20,10 @@ describe('PageTitle', () => {
   it('should return the correct text', () => {
     const element = mountWithTheme(<PageTitle title={Title} />);
     expect(element.text()).toBe(Title);
+  });
+
+  it('should return the default text when no value supplied', () => {
+    const element = mountWithTheme(<PageTitle />);
+    expect(element.text()).toBe(NoTitle);
   });
 });

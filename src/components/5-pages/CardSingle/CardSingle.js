@@ -58,7 +58,7 @@ export class CardSingle extends Component {
         imgSrc: productSingle.ProductImage.Link.Href,
         id: productSingle.ProductId,
         productNo: productSingle.MoonpigProductNo,
-        link: '#',
+        link: '/',
       };
 
       this.setState({ product, loading: false });

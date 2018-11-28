@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const CardContent = styled.article`
+  display: flex;
+  flex-direction: column;
   padding: 60px 20px 20px;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.sm}) {
@@ -9,6 +11,7 @@ export const CardContent = styled.article`
 
   @media screen and (min-width: ${props => props.theme.breakpoints.md}) {
     display: flex;
+    flex-direction: row;
     padding: 40px;
   }
 
@@ -22,19 +25,21 @@ export const CardContent = styled.article`
 `;
 
 export const CardLeft = styled.div`
+order: 1;
+
   @media screen and (min-width: ${props => props.theme.breakpoints.md}) {
-    order: 1;
     max-width: 50%;
   }
 `;
 
 export const CardRight = styled.div`
+order: 2;
+
   @media screen and (min-width: ${props => props.theme.breakpoints.md}) {
     align-self: stretch;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    order: 2;
     padding: 0 0 0 60px;
     text-align: left;
     flex: 1;

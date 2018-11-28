@@ -22,10 +22,10 @@ const Card = ({ product }) => (
             <CardRight>
               <PageTitle title={product.title || NoTitle} />
               <ShortDescription>{product.desc || NoDesc}</ShortDescription>
-              <Button title={BuyText} url={product.link} external />
+              <Button tabIndex='0' title={BuyText} url={product.link} external />
             </CardRight>
             <CardLeft>
-              <CardImage url={product.imgSrc} alt={product.title} />
+              <CardImage url={product.imgSrc} alt={product.title || NoTitle} />
             </CardLeft>
           </CardContent>
         </CardStyled>
