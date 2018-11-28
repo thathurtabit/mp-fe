@@ -6,17 +6,13 @@ import CardThumb from '../../2-molecules/CardThumb/CardThumb';
 import CardListStyled from './CardList.styled';
 import { loadDelay } from '../../../utils/constants/constants';
 
-const CardList = ({products}) => (
+const CardList = ({ products }) => (
   <Fragment>
     <TransitionGroup>
-      <CSSTransition
-        classNames="cards-in"
-        appear
-        timeout={loadDelay}
-      >
-        <CardListStyled className="cards-in">
-          {products.map(product => (
-            <CardThumb key={uuidv1()} product={product} />
+      <CSSTransition classNames="cards-in" appear timeout={loadDelay}>
+        <CardListStyled id="card-list" className="cards-in">
+          {products.map((product, index) => (
+            <CardThumb num={index} key={uuidv1()} product={product} />
           ))}
         </CardListStyled>
       </CSSTransition>

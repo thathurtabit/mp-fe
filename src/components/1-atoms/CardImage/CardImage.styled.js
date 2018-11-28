@@ -7,6 +7,8 @@ const IMG = styled.img`
   border-left: 0;
   box-shadow: ${props =>
     props.thumb ? '5px 5px 0 rgba(0, 0, 0, 0.05)' : 'none'};
+  display: block;
+  margin: 0 auto;
   max-width: 100%;
   max-height: 100%:
   opacity: 0;

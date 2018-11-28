@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CardContent = styled.article`
   display: flex;
   flex-direction: column;
-  padding: 60px 20px 20px;
+  padding: 30px 20px 20px;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.sm}) {
     padding: 30px;
@@ -25,7 +25,7 @@ export const CardContent = styled.article`
 `;
 
 export const CardLeft = styled.div`
-order: 1;
+  order: 1;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.md}) {
     max-width: 50%;
@@ -33,7 +33,8 @@ order: 1;
 `;
 
 export const CardRight = styled.div`
-order: 2;
+  order: 2;
+  padding: 30px 0;
 
   @media screen and (min-width: ${props => props.theme.breakpoints.md}) {
     align-self: stretch;

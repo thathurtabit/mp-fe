@@ -25,12 +25,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test-coverage": "react-scripts test --env=jsdom -o --coverage --watch",
     "eject": "react-scripts eject",
     "deploy": "yarn build && aws s3 sync build/ s3://moonpig-fe-fun --delete",
-    "e2e": "cypress open",
-    "analyze": "source-map-explorer build/static/js/main.*",
-    "surge": "react-scripts build && cd ./build && surge --domain https://moonpig-fe-fun.surge.sh"
+    "e2e": "cypress run",
+    "analyze": "source-map-explorer build/static/js/main.*"
   },
   "eslintConfig": {
     "extends": "react-app"

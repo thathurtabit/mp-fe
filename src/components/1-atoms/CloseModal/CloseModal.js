@@ -10,6 +10,7 @@ const mapDispatchToProps = dispatch => ({
 
 export const CloseModal = ({ toggleModal }) => (
   <CloseModalStyled
+    data-close-modal
     aria-label="Close Modal"
     to="/"
     onClick={() => toggleModal(false)}

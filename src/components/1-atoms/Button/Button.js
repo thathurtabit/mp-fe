@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ButtonStyled from './Button.styled';
 
-const Button = ({ title, url, external }) => (
-  <ButtonStyled href={url} title={title} {...external && 'target="_blank"'}>
+const Button = ({ title, url }) => (
+  <ButtonStyled data-buy-button href={url} title={title}>
     {title}
   </ButtonStyled>
 );

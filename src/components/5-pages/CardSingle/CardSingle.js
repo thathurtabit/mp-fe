@@ -5,7 +5,6 @@ import CardSingleStyled from './CardSingle.styled';
 import Loading from '../../1-atoms/Loading/Loading';
 import { NoTitle, NoDesc } from '../../../utils/constants/constants';
 
-const Error = lazy(() => import('../../2-molecules/Error/Error'));
 const NoItems = lazy(() => import('../../2-molecules/NoItems/NoItems'));
 const Card = lazy(() => import('../../3-organisms/Card/Card'));
 
@@ -28,7 +27,7 @@ export class CardSingle extends Component {
     const { api, products } = this.props;
 
     if (!products.length && this.mounted) {
-      fetch(api, {credentials: 'same-origin', method: 'GET'})
+      fetch(api, { credentials: 'same-origin', method: 'GET' })
         .then(response => response.json())
         .then(data => this.handleFetchData(data))
         .catch(error => this.handleFetchError(error));
@@ -78,11 +77,9 @@ export class CardSingle extends Component {
         {loading && <Loading loading />}
         <Suspense fallback={<Loading loading={loading} />}>
           {error ? (
-            <Error error="It's not you, it's us." />
-          ) : !loading && product !== null ? (
-            <Card product={product} />
-          ) : (
             <NoItems text="No items found." />
+          ) : (
+            !loading && product !== null && <Card product={product} />
           )}
         </Suspense>
       </CardSingleStyled>

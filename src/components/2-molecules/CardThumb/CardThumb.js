@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => ({
   toggleModal: bool => dispatch(toggleModal(bool)),
 });
 
-const CardThumb = ({ product, modalOpen, toggleModal }) => {
+const CardThumb = ({ product, modalOpen, toggleModal, num }) => {
   const { title, imgSrc, id, productNo } = product;
   const body = document.querySelector('body');
 
@@ -30,6 +30,7 @@ const CardThumb = ({ product, modalOpen, toggleModal }) => {
     <CardThumbStyled>
       <Suspense key={id} fallback={<LoadingSmall />}>
         <CardLink
+          id={`card-thumb-${num}`}
           key={id}
           to={{
             pathname: `/card/${productNo}`,

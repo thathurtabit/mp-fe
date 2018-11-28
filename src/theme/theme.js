@@ -10,10 +10,10 @@ const theme = {
     baseSize: '16px',
   },
   button: {
-    bg: '#f79cc0',
+    bg: '#ee447d',
     text: '#fff',
-    hover: '#ffa2c1',
-    active: '#ffa2c1',
+    hover: '#d43168',
+    active: '#d43168',
   },
   links: {
     link: '#505050',

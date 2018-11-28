@@ -21,7 +21,7 @@ const CardModalStyled = styled.section`
   height: 90vh;
   left: 50%;
   max-height: 520px;
-  max-width: 800px;
+  max-width: 500px;
   opacity: 0;
   overflow-y: auto;
   position: fixed;
@@ -41,6 +41,7 @@ const CardModalStyled = styled.section`
 
   @media screen and (min-width: ${props => props.theme.breakpoints.md}) {
     box-shadow: 10px 10px 0 ${props => props.theme.colors.brand};
+    max-width: 800px;
   }
 
   @media screen and (min-width: ${props => props.theme.breakpoints.lg}) {

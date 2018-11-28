@@ -4,9 +4,15 @@ import { Link } from 'react-router-dom';
 const CloseModalStyled = styled(Link)`
   height: 30px;
   position: absolute;
-  right: 20px;
-  top: 20px;
+  right: 10px;
+  top: 10px;
   width: 30px;
+  z-index: 10;
+
+  @media screen and (min-width: ${props => props.theme.breakpoints.md}) {
+    right: 20px;
+    top: 20px;
+  }
 
   &::before,
   &::after {
