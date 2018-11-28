@@ -40,7 +40,7 @@ class Home extends Component {
     const { api, products } = this.props;
 
     if (!products.length && this.mounted) {
-      fetch(api)
+      fetch(api, {credentials: 'same-origin', method: 'GET'})
         .then(response => response.json())
         .then(data => this.handleFetchData(data))
         .catch(error => this.handleFetchError(error));
