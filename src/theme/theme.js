@@ -20,6 +20,11 @@ const theme = {
     hover: '#ffa2c1',
     active: '#ffa2c1',
   },
+  return: {
+    bg: '#888',
+    text: '#fff',
+    hover: '#505050',
+  },
   header: {
     height: 25, // add 'px' at component level
   },

@@ -12,7 +12,7 @@ const IMG = styled.img`
   max-width: 100%;
   max-height: 100%:
   opacity: 0;
-  transform: scale(0.9);
+  transform: scale(0.95);
   transition: box-shadow ${props => props.theme.thumb.transition.duration}
       ${props => props.theme.transition.easeOut},
     transform ${props => props.theme.thumb.transition.duration}

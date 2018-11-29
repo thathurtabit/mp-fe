@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Loading from '../../1-atoms/Loading/Loading';
 import { storeResponse } from '../../../state/actions/storeResponse';
 import { NoTitle, NoDesc } from '../../../utils/constants/constants';
-import Intro from '../../2-molecules/Intro/Intro';
+import Intro from '../../1-atoms/Intro/Intro';
 
 // Lazy load components
 const Error = lazy(() => import('../../2-molecules/Error/Error'));
@@ -41,7 +41,7 @@ class Home extends Component {
     const { api, products } = this.props;
 
     if (!products.length && this.mounted) {
-      fetch(api, {credentials: 'same-origin', method: 'GET'})
+      fetch(api, { credentials: 'same-origin', method: 'GET' })
         .then(response => response.json())
         .then(data => this.handleFetchData(data))
         .catch(error => this.handleFetchError(error));

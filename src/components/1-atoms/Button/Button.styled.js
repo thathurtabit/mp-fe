@@ -17,6 +17,11 @@ const ButtonStyled = styled.a`
     color: ${props => props.theme.button.text};
     text-decoration: none;
   }
+
+  &:focus {
+    outline: 2px dotted ${props => props.theme.colors.copy};
+    outline-offset: 4px;
+  }
 `;
 
 export default ButtonStyled;

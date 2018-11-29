@@ -28,6 +28,8 @@ export class CardModal extends Component {
   constructor(props) {
     super(props);
 
+    this.modalRef = React.createRef();
+
     this.state = {
       loading: true,
     };
@@ -44,6 +46,8 @@ export class CardModal extends Component {
     )[0];
 
     this.setState({ product: productData, loading: false });
+
+    this.modalRef.current.focus();
   }
 
   render() {
@@ -60,6 +64,7 @@ export class CardModal extends Component {
               aria-modal="true"
               tabIndex="0"
               className="modal-in"
+              ref={this.modalRef}
             >
               <CloseModal />
               {loading ? (
@@ -71,12 +76,7 @@ export class CardModal extends Component {
                     <ShortDescription>
                       {product.desc || NoDesc}
                     </ShortDescription>
-                    <Button
-                      tabIndex="0"
-                      title={BuyText}
-                      url={product.link}
-                      external
-                    />
+                    <Button title={BuyText} url={product.link} external />
                   </CardRight>
                   <CardLeft>
                     <CardImage url={product.imgSrc} title={product.title} />

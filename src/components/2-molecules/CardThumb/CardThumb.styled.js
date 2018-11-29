@@ -7,7 +7,6 @@ export const CardLink = styled(Link)`
 
 const CardThumbStyled = styled.li`
   align-items: center;
-  background: ${props => props.theme.colors.brand};
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ButtonStyled from './Button.styled';
 
 const Button = ({ title, url }) => (
-  <ButtonStyled data-buy-button href={url} title={title}>
+  <ButtonStyled tabIndex="0" data-buy-button href={url} title={title}>
     {title}
   </ButtonStyled>
 );

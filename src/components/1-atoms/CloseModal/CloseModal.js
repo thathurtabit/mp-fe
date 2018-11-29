@@ -14,6 +14,7 @@ export const CloseModal = ({ toggleModal }) => (
     aria-label="Close Modal"
     to="/"
     onClick={() => toggleModal(false)}
+    tabIndex="0"
   />
 );
 
