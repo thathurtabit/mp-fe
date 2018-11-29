@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Loading from '../../1-atoms/Loading/Loading';
 import { storeResponse } from '../../../state/actions/storeResponse';
 import { NoTitle, NoDesc } from '../../../utils/constants/constants';
+import Intro from '../../2-molecules/Intro/Intro';
 
 // Lazy load components
 const Error = lazy(() => import('../../2-molecules/Error/Error'));
@@ -91,6 +92,7 @@ class Home extends Component {
             <Error error="It's not you, it's us." />
           ) : products !== null && products.length ? (
             <Fragment>
+              <Intro />
               <CardList products={products} />
             </Fragment>
           ) : (
