@@ -6,7 +6,7 @@ const IntroStyled = styled.h1`
   text-transform: lowercase;
 
   span {
-    color: ${props => props.theme.colors.brand};
+    color: ${props => props.theme.colors.title};
 
     &:nth-child(even) {
       position: relative;
