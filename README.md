@@ -4,11 +4,16 @@ Demo can be viewed here: [live demo](http://moonpig-fe-fun.s3-website.eu-west-2.
 
 ## Notes
 
-+ Trying to fetch from the endpoint specified in task gives a CORB error - the data here is mocked from a cURL call
-+ https would be nice - but the free S3 bucket the demo is hosted on won't allow it without a domain name purchase for CloudFront to use. Same for gzipping content
++ Trying to fetch from the endpoint specified in task gives a CORB error - the data here is mocked (and truncated) from a cURL call
++ Uses IntersectionObserver as well as React's lazy/Suspense methods to lazy load content based on the user's interactions
 + Cards can be viewed either in a Modal format, or directly via the card url (opens single page)
+
+## Snags
+
++ https would be nice - but the free S3 bucket the demo is hosted on won't allow it without a domain name purchase for CloudFront to use. Same for gzipping content
 + A CDN for the images (which optimised and serves up different sizes based on responsive widths) would improve things
 + React Transition Group seems to want to transition everything all of the time (a little annoying)
++ Given more time, pagination would be good to use at some point (while still lazy loading)
 
 
 
