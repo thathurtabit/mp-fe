@@ -1,6 +1,8 @@
 import React, { Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import 'intersection-observer';
+import { InView } from 'react-intersection-observer';
 import CardThumbStyled, { CardLink } from './CardThumb.styled';
 import LoadingSmall from '../../1-atoms/LoadingSmall/LoadingSmall';
 import { toggleModal } from '../../../state/actions/toggleModal';
@@ -27,23 +29,29 @@ const CardThumb = ({ product, modalOpen, toggleModal, num }) => {
   }
 
   return (
-    <CardThumbStyled>
-      <Suspense key={id} fallback={<LoadingSmall />}>
-        <CardLink
-          id={`card-thumb-${num}`}
-          key={id}
-          to={{
-            pathname: `/card/${productNo}`,
-            state: { modal: true },
-          }}
-          tabIndex="0"
-          title={title}
-          onClick={() => toggleModal(true)}
-        >
-          <LazyThumb url={imgSrc} title={title} thumb />
-        </CardLink>
-      </Suspense>
-    </CardThumbStyled>
+    <InView>
+      {({ inView, ref }) => (
+        <CardThumbStyled ref={ref}>
+          {inView && (
+            <Suspense key={id} fallback={<LoadingSmall />}>
+              <CardLink
+                id={`card-thumb-${num}`}
+                key={id}
+                to={{
+                  pathname: `/card/${productNo}`,
+                  state: { modal: true },
+                }}
+                tabIndex="0"
+                title={title}
+                onClick={() => toggleModal(true)}
+              >
+                <LazyThumb url={imgSrc} title={title} thumb />
+              </CardLink>
+            </Suspense>
+          )}
+        </CardThumbStyled>
+      )}
+    </InView>
   );
 };
 

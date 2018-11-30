@@ -9,7 +9,6 @@ import theme from '../../../theme/theme';
 import Routes from '../Routes/Routes';
 import Header from '../../2-molecules/Header/Header';
 import AppStyled from './App.styled';
-import ScrollToTop from '../../../utils/helpers/ScrollToTop';
 
 WebFont.load({
   google: {
@@ -51,12 +50,10 @@ const App = () => (
   <ConnectedRouter history={history}>
     <ThemeProvider theme={theme}>
       <Fragment>
-        <ScrollToTop>
-          <AppStyled>
-            <Header />
-            <Route path="/" component={GATracker(Routes)} />
-          </AppStyled>
-        </ScrollToTop>
+        <AppStyled>
+          <Header />
+          <Route path="/" component={GATracker(Routes)} />
+        </AppStyled>
         <GlobalStyle />
       </Fragment>
     </ThemeProvider>
