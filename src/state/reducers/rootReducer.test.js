@@ -31,6 +31,18 @@ describe('rootReducer', () => {
     });
   });
 
+  it('should handle SET_PRODUCT_COUNT', () => {
+    expect(
+      reducer(initState, {
+        type: types.SET_PRODUCT_COUNT,
+        payload: 200,
+      })
+    ).toEqual({
+      ...initState,
+      productCount: 200,
+    });
+  });
+
   it('should handle TOGGLE_MODAL', () => {
     expect(
       reducer(initState, {

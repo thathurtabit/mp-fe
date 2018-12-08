@@ -10,14 +10,7 @@ const RoutesWrapper = styled.section`
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-
-  @media screen and (min-width: ${props => props.theme.breakpoints.xl}) {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
+  justify-content: flex-start;
 `;
 
 export default RoutesWrapper;

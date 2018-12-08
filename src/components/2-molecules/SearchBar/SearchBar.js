@@ -38,7 +38,6 @@ class SearchBar extends Component {
   handleSubmit(event) {
     const { setSearch } = this.props;
     const { value } = this.state;
-    console.log('Search term: ', value);
 
     setSearch(value);
     event.preventDefault();

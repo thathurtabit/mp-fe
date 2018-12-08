@@ -38,7 +38,7 @@ export const SearchBarSubmit = styled.button`
 
 const SearchBar = styled.form`
   display: flex;
-  margin: 20px auto 60px;
+  margin: 20px auto 40px;
   max-width: 300px;
   position: relative;
   top: -25px;

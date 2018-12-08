@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RoutesWrapper, { Content } from './Routes.styled';
 import Loading from '../../1-atoms/Loading/Loading';
+import ErrorBoundary from '../../2-molecules/ErrorBoundary/ErrorBoundary';
 
 // Use React.lazy for lazyload / code splitting
 const Home = lazy(() => import('../../5-pages/Home/Home'));
@@ -44,28 +45,32 @@ class Routes extends Component {
     return (
       <Fragment>
         <RoutesWrapper>
-          <Content>
+          <ErrorBoundary>
+            <Content>
+              <Suspense fallback={<Loading />}>
+                <Switch location={isModal ? this.previousLocation : location}>
+                  <Route exact path="/" component={() => <Home />} />
+                  <Route
+                    path="/card/:id"
+                    component={() => (
+                      <CardSingle location={location.pathname} />
+                    )}
+                  />
+                  <Route
+                    component={() => <Error error="404: Page not found" />}
+                  />
+                </Switch>
+              </Suspense>
+            </Content>
             <Suspense fallback={<Loading />}>
-              <Switch location={isModal ? this.previousLocation : location}>
-                <Route exact path="/" component={() => <Home />} />
+              {isModal && (
                 <Route
                   path="/card/:id"
-                  component={() => <CardSingle location={location.pathname} />}
+                  component={() => <CardModal location={location} />}
                 />
-                <Route
-                  component={() => <Error error="404: Page not found" />}
-                />
-              </Switch>
+              )}
             </Suspense>
-          </Content>
-          <Suspense fallback={<Loading />}>
-            {isModal && (
-              <Route
-                path="/card/:id"
-                component={() => <CardModal location={location} />}
-              />
-            )}
-          </Suspense>
+          </ErrorBoundary>
         </RoutesWrapper>
       </Fragment>
     );

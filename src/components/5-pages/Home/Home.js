@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Loading from '../../1-atoms/Loading/Loading';
 import { storeResponse } from '../../../state/actions/storeResponse';
+import { setProductCount } from '../../../state/actions/setProductCount';
 import { NoTitle, NoDesc } from '../../../utils/constants/constants';
-import Intro from '../../1-atoms/Intro/Intro';
 import SearchBar from '../../2-molecules/SearchBar/SearchBar';
 import { upperCaseIncludes } from '../../../utils/helpers/upperCaseIncludes';
+import IntroBar from '../../2-molecules/IntroBar/IntroBar';
 
 // Lazy load components
 const Error = lazy(() => import('../../2-molecules/Error/Error'));
@@ -23,6 +24,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   storeResponse: arr => dispatch(storeResponse(arr)),
+  setProductCount: int => dispatch(setProductCount(int)),
 });
 
 class Home extends Component {
@@ -86,8 +88,6 @@ class Home extends Component {
         upperCaseIncludes(res.title, searchValue)
       );
 
-      console.log('searchValue: ', searchValue.length);
-
       // set to Redux state
       storeResponse(searchValue.length ? filteredSelection : responseSelection);
     }
@@ -100,8 +100,10 @@ class Home extends Component {
 
   render() {
     const { error } = this.state;
-    const { products, searchValue } = this.props;
+    const { products, searchValue, setProductCount } = this.props;
     const filteredProducts = this.memoizedFilter(products, searchValue);
+    // Count current items
+    setProductCount(filteredProducts.length);
 
     return (
       <Fragment>
@@ -111,7 +113,7 @@ class Home extends Component {
           ) : products !== null && products.length ? (
             <Fragment>
               <SearchBar />
-              <Intro />
+              <IntroBar />
               <CardList products={filteredProducts} />
             </Fragment>
           ) : (
@@ -132,6 +134,7 @@ Home.propTypes = {
   api: PropTypes.string.isRequired,
   searchValue: PropTypes.string,
   storeResponse: PropTypes.func.isRequired,
+  setProductCount: PropTypes.func.isRequired,
   products: PropTypes.arrayOf(
     PropTypes.objectOf(
       PropTypes.oneOfType([PropTypes.string, PropTypes.number])
