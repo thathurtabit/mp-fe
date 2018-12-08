@@ -16,7 +16,7 @@ const RoutesWrapper = styled.section`
     align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
   }
 `;
 

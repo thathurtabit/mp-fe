@@ -6,6 +6,8 @@ const rootReducer = (state = {}, action) => {
       return { ...state, loading: action.payload };
     case types.STORE_RESPONSE:
       return { ...state, response: action.payload };
+    case types.SET_SEARCH:
+      return { ...state, searchValue: action.payload };
     case types.TOGGLE_MODAL:
       return { ...state, modalOpen: action.payload };
     default:

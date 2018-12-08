@@ -4,6 +4,7 @@ const initState = {
       ? 'http://moonpig-fe-fun.s3-website.eu-west-2.amazonaws.com/api/response.json'
       : 'http://localhost:3000/api/response.json',
   loading: true,
+  searchValue: '',
   response: [],
 };
 
