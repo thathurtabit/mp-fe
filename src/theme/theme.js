@@ -8,12 +8,19 @@ const theme = {
   },
   fonts: {
     baseSize: '16px',
+    fontFamily: 'Poppins, sans-serif',
   },
   button: {
     bg: '#ee447d',
     text: '#fff',
     hover: '#d43168',
     active: '#d43168',
+  },
+  input: {
+    bg: '#fff',
+    border: '#eee',
+    hover: '#999',
+    focus: '#ffa2c1',
   },
   links: {
     link: '#505050',
@@ -28,6 +35,9 @@ const theme = {
   header: {
     height: 25, // add 'px' at component level
   },
+  hr: {
+    borderColor: '#ccc',
+  },
   cardList: {
     maxWidth: '1300px',
   },
@@ -41,6 +51,7 @@ const theme = {
   },
   transition: {
     duration: '0.6s',
+    durationFast: '0.3s',
     easeOut: 'cubic-bezier(0.165, 0.84, 0.44, 1)',
     easeInOut: 'cubic-bezier(1, 0, 0, 1)',
     easeOutBack: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
