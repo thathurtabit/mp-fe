@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import debounce from 'lodash.debounce';
 import SearchBarStyled, {
   SearchBarInput,
   SearchBarSubmit,
@@ -21,26 +22,37 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
 
-    const { searchValue } = props;
+    const { searchValue, setSearch } = props;
+
+    this.setSearch = setSearch;
 
     this.state = { value: searchValue };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.emitChangeDebounced = debounce(this.emitChange, 300);
+  }
+
+  componentWillUnmount() {
+    this.emitChangeDebounced.cancel();
   }
 
   handleChange(event) {
-    const { setSearch } = this.props;
     const { value } = event.target;
+
+    // Update local state to give the user instant feedback...
     this.setState({ value });
-    setSearch(value);
+    // ... but debounce the result before pushing to redux for performance
+    this.emitChangeDebounced(value);
   }
 
   handleSubmit(event) {
-    const { setSearch } = this.props;
     const { value } = this.state;
-
-    setSearch(value);
+    this.setSearch(value);
     event.preventDefault();
+  }
+
+  emitChange(value) {
+    this.setSearch(value);
   }
 
   render() {
