@@ -6,8 +6,9 @@ export const Quote = styled.q`
 `;
 
 export const Span = styled.span`
+  border-bottom: 1px solid ${props => props.theme.colors.brand};
+  color: ${props => props.theme.colors.copy};
   font-weight: bold;
-  color: ${props => props.theme.colors.title};
 `;
 
 const SearchInfoStyled = styled.p`

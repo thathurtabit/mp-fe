@@ -12,13 +12,13 @@ const SearchInfo = ({ searchValue, total }) => {
   const content = () => {
     if (searchValue.length) {
       return (
-        <SearchInfoStyled>
+        <SearchInfoStyled aria-live="polite">
           <Quote>{searchValue}</Quote> has <Span>{total}</Span> results
         </SearchInfoStyled>
       );
     }
     return (
-      <SearchInfoStyled>
+      <SearchInfoStyled aria-live="polite">
         Showing <Span>{total}</Span> results
       </SearchInfoStyled>
     );

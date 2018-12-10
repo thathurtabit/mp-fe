@@ -61,7 +61,7 @@ class SearchBar extends Component {
       <SearchBarStyled role="search" onSubmit={this.handleSubmit}>
         <SearchBarInput
           type="search"
-          tabIndex="-1"
+          tabIndex="0"
           placeholder={SearchPlaceholder}
           aria-label="Search cards"
           value={value}

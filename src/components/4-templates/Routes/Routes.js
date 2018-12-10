@@ -46,7 +46,7 @@ class Routes extends Component {
       <Fragment>
         <RoutesWrapper>
           <ErrorBoundary>
-            <Content>
+            <Content role="main">
               <Suspense fallback={<Loading />}>
                 <Switch location={isModal ? this.previousLocation : location}>
                   <Route exact path="/" component={() => <Home />} />
