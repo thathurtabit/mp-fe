@@ -4,7 +4,7 @@ import Logo from '../../1-atoms/Logo/Logo';
 
 const Header = () => (
   <HeaderStyled>
-    <Link to="/">
+    <Link to="/" title="Moonpig">
       <Logo title="Moonpig" />
     </Link>
   </HeaderStyled>
