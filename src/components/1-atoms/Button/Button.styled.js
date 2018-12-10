@@ -4,6 +4,8 @@ const ButtonStyled = styled.a`
   background: ${props => props.theme.button.bg};
   color: ${props => props.theme.button.text};
   display: block;
+  font-size: calc(${props => props.theme.fonts.baseSize} + 3px);
+  font-weight: bold;
   margin: 0 auto;
   max-width: 300px;
   padding: 15px 0;

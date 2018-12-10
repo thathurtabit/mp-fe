@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Title from './PageTitle.styled';
-import {NoTitle} from '../../../utils/constants/constants';
+import { NoTitle } from '../../../utils/constants/constants';
 
-const PageTitle = ({ title }) => <Title>{title}</Title>;
+const PageTitle = ({ title }) => <Title id="product-title">{title}</Title>;
 
 export default PageTitle;
 

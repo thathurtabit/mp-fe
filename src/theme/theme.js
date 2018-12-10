@@ -28,9 +28,9 @@ const theme = {
     active: '#ffa2c1',
   },
   return: {
-    bg: '#888',
+    bg: '#505050',
     text: '#fff',
-    hover: '#505050',
+    hover: '#333',
   },
   header: {
     height: 25, // add 'px' at component level

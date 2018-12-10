@@ -60,7 +60,7 @@ export class CardModal extends Component {
             <CardModalStyled
               data-card-modal
               role="dialog"
-              aria-labelledby="modal-title"
+              aria-labelledby="product-title"
               aria-modal="true"
               tabIndex="0"
               className="modal-in"
